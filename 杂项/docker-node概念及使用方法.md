@@ -40,5 +40,26 @@ Dockerfile 是 image 生成的核心文件，它包含了创建 image 和启动�
 
 package.json 和启动脚本不做解释；
 
+配置好这几个文件后，执行如下命令，可以生成 image 文件：  
+`docker build -t <docker project name> .`  
+生成后，可以通过`docker images`查看该 image,还可以通过 save 和 load 命令，将 image 转存出来，以在不同服务器之间复制部署。  
+导出：`docker save -o <image path> <image name>`  
+导入：`docker load -i <image path>`
 
+### docker 项目的启动
 
+在有了 docker 的 image 后，可以通过命令来在后台静默启动该 image，命令如下  
+`docker run -d -p 3000:8080 <image name>`  
+-d 参数是指在后台运行  
+-p 外部机器的3000映射docker内部的808端口  
+执行后，`docker ps` 查看运行的项目
+
+### 其他常用操作
+`docker stop <docker process id >`停进程  
+`docker rm <docker process id >`删进程
+`docker rmi <docker image id >`删image
+
+### 相关文档
+
+- [docker 命令大全](http://www.runoob.com/docker/docker-command-manual.html)
+- [docker 官网](https://www.docker.com)
